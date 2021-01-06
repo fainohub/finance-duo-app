@@ -10,7 +10,7 @@
 
     <div class="container-fluid mt--6">
       <div class="row justify-content-center">
-        <div class="col-lg-10 card-wrapper">
+        <div class="col-lg-8 card-wrapper">
 
           <card>
             <!-- Card header -->
@@ -30,7 +30,8 @@
                     <template>
                       <el-select class="select-default"
                                  placeholder="Categoria"
-                                 v-model="expense.category_id">
+                                 v-model="expense.category_id"
+                      >
                         <el-option v-for="option in expense_categories"
                                    class="select-danger"
                                    :value="option.value"
@@ -114,6 +115,7 @@
   /* Services */
   import ExpenseService from '../../services/expense.service';
   import router from '../../routes/router';
+  import moment from "moment";
 
   export default {
     name: 'ExpenseCreate',
@@ -129,22 +131,33 @@
         loading: false,
         expense: {
           user_account_id: '1872ab79-6506-44e4-8d6b-38bc51afa858',
-          category_id: '4a5282b2-67d4-49a0-895d-1b44d7258170',
-          description: 'Net',
-          amount: 20,
-          paid_at: '2021-01-01',
+          category_id: null,
+          description: null,
+          amount: 0,
+          paid_at: moment().format('Y-MM-DD'),
         },
-        expense_categories:[
-          {value: '4a5282b2-67d4-49a0-895d-1b44d7258170', label: 'Internet'},
-        ]
+        expense_categories: []
       }
     },
 
     mounted: function() {
-      //
+      this.getCategories();
     },
 
     methods: {
+      getCategories: function () {
+        ExpenseService.categories().then(response => {
+          response.categories.forEach((data) => {
+            this.expense_categories.push(
+              {
+                value: data.id,
+                label: data.name
+              }
+            );
+          });
+        });
+      },
+
       submitForm: function() {
         this.$validator.errors.clear();
 
@@ -163,7 +176,11 @@
               type: 'success'
             });
           }).catch(error => {
-            //
+            this.$notify({
+              title: 'Erro',
+              message: 'Ops, algo deu errado :(',
+              type: 'warning'
+            });
           }).finally(() => {
             this.loading = false;
           });
