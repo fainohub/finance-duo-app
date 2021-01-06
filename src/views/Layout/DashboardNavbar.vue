@@ -5,30 +5,7 @@
       type="default"
   >
     <div class="form-group mb-0 mobile-header-buttons d-none">
-      <router-link to="/artworks/create">
-        <base-button icon type="primary">
-          <span class="btn-inner--icon"><i class="ni ni-cloud-upload-96"></i></span>
-          <span class="btn-inner--text">Upload Artwork</span>
-        </base-button>
-      </router-link>
 
-      <el-dropdown v-if="user.studio.shopify_url" trigger="click" class="dropdown ml-3" placement="bottom">
-        <base-button icon type="neutral" @click="$ga.event('shareStudioClick', 'Share', 'superiorToolbarShareMyStudio', 1)" >
-          <span class="btn-inner--text"><i class="fas fa-share-alt"></i> Share My Studio</span>
-        </base-button>
-        <el-dropdown-menu class="dropdown-menu dropdown-menu-arrow show" slot="dropdown">
-          <ShareableButtons
-              :url="user.studio.shopify_url"
-              title="Check it out my amazing artworks in ArtishUp products!"
-              description="Check it out my amazing artworks in ArtishUp products!"
-              quote="Check it out my amazing artworks in ArtishUp products!"
-              hashtags="artishup"
-              twitter-user="artishup"
-              :media="user.studio.avatar"
-              event-category="shareStudioClick"
-          ></ShareableButtons>
-        </el-dropdown-menu>
-      </el-dropdown>
     </div>
 
     <!-- Navbar links -->
@@ -62,11 +39,11 @@
       <el-dropdown trigger="click" class="dropdown ml-3" placement="bottom">
         <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <div class="media align-items-center">
-                  <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" :src="user.studio.avatar">
-                  </span>
+              <span class="avatar avatar-sm rounded-circle">
+                <img alt="Image placeholder" :src="user.avatar">
+              </span>
             <div class="media-body ml-2 d-none d-lg-block">
-              <span class="mb-0 text-sm  font-weight-bold">{{ user.first_name }} {{ user.last_name }}</span>
+              <span class="mb-0 text-sm  font-weight-bold">{{ user.name }}</span>
             </div>
           </div>
         </a>
@@ -110,13 +87,13 @@
       Modal,
       ShareableButtons
     },
-    
+
     computed: {
       ...mapGetters('account', [
         'user'
       ])
     },
-    
+
     data() {
       return {
         dropdown: {
@@ -130,24 +107,24 @@
         searchQuery: '',
       };
     },
-    
+
     mounted: function() {
       this.getUser();
     },
-    
+
     methods: {
       ...mapActions('auth', [
         'logout'
       ]),
-      
+
       ...mapActions('account', [
         'getUser'
       ]),
-      
+
       closeDropDown() {
         this.activeNotifications = false;
       },
-      
+
       toggleSidebar() {
         this.$sidebar.displaySidebar(!this.$sidebar.showSidebar);
       }

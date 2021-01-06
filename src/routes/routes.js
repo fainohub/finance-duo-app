@@ -1,10 +1,10 @@
 import DashboardLayout from '@/views/Layout/DashboardLayout.vue';
-import HomeLayout from '@/views/Layout/HomeLayout.vue';
 import NotFound from '@/views/Home/NotFoundPage.vue';
+import LoginLayout from "@/views/Layout/LoginLayout";
 
 let authPages = {
   path: '/',
-  component: HomeLayout,
+  component: LoginLayout,
   name: 'Authentication',
   children: [
     {
@@ -28,24 +28,6 @@ let authPages = {
   ]
 };
 
-let homePage = {
-  path: '/',
-  component: HomeLayout,
-  redirect: 'home',
-  name: 'Home',
-  children: [
-    {
-      path: 'home',
-      component: () => import(/* webpackChunkName: "pages" */ '@/views/Home/HomeIndex.vue'),
-      meta: {
-        noBodyBackground: true,
-        public: true,
-        onlyWhenLoggedOut: false
-      }
-    }
-  ]
-};
-
 let dashboardPages = {
   path: '/',
   component: DashboardLayout,
@@ -57,50 +39,20 @@ let dashboardPages = {
       component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard/Dashboard.vue')
     },
     {
-      path: 'artworks',
-      name: 'Artworks',
-      component: () => import(/* webpackChunkName: "artworks" */ '@/views/Artworks/ArtworkIndex.vue')
+      path: 'expenses',
+      name: 'Expenses',
+      component: () => import(/* webpackChunkName: "expenses" */ '@/views/Expense/ExpenseIndex.vue')
     },
     {
-      path: 'artworks/create',
-      name: 'Create Artwork',
-      component: () => import(/* webpackChunkName: "catalog-create" */ '@/views/Artworks/ArtworkCreate.vue')
-    },
-    {
-      path: 'artworks/:listingId/edit',
-      name: 'Update Artwork',
-      component: () => import(/* webpackChunkName: "catalog-update" */ '@/views/Artworks/ArtworkUpdate.vue')
-    },
-    {
-      path: 'artworks/:listingId/show',
-      name: 'View Artwork',
-      component: () => import(/* webpackChunkName: "catalog-show" */ '@/views/Artworks/ArtworkShow.vue')
-    },
-    {
-      path: 'sales',
-      name: 'Sales',
-      component: () => import(/* webpackChunkName: "sales" */ '@/views/Sales/SalesIndex.vue')
-    },
-    {
-      path: 'balance',
-      name: 'Balance',
-      component: () => import(/* webpackChunkName: "balance" */ '@/views/Balance/BalanceIndex.vue')
-    },
-    {
-      path: 'account',
-      name: 'User Page',
-      component: () => import(/* webpackChunkName: "account" */ '@/views/User/UserProfile.vue')
-    },
-    {
-      path: 'news',
-      name: 'What is New',
-      component: () => import(/* webpackChunkName: "news" */ '@/views/Changelog/ChangelogIndex.vue')
+      path: 'expenses/create',
+      name: 'Create Expense',
+      component: () => import(/* webpackChunkName: "expense-create" */ '@/views/Expense/ExpenseCreate.vue')
     }
   ]
 };
 
 const routes = [
-  homePage,
+  //homePage,
   authPages,
   dashboardPages,
   { path: '*', component: NotFound }

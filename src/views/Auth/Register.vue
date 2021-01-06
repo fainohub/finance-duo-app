@@ -160,7 +160,7 @@
   </div>
 </template>
 <script>
-  import AccountService from '../../services/account.service'
+  import UserService from '../../services/user.service'
   import firebase from 'firebase'
   import { mapGetters, mapActions } from "vuex";
   import router from '../../routes/router';
@@ -196,7 +196,7 @@
       ...mapActions('auth', [
         'loginUser'
       ]),
-      
+
       facebookLogin() {
         const provider = new firebase.auth.FacebookAuthProvider();
 
@@ -272,7 +272,7 @@
       socialRegisterSubmit() {
         this.enableButton = false;
 
-        AccountService.register(this.user).then(response => {
+        UserService.register(this.user).then(response => {
           this.processing = true;
 
           this.loginUser({
@@ -305,8 +305,8 @@
         this.$validator.errors.clear();
 
         this.$validator.validateAll().then(() => {
-          AccountService.register(this.user).then(response => {
-            
+          UserService.register(this.user).then(response => {
+
             this.loginUser({
               token: response.data.token,
             });

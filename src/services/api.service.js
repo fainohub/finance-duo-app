@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { StorageService } from '../services/storage.service'
+import { StorageService } from '@/services/storage.service'
 import store from '../store'
 
 const ApiService = {

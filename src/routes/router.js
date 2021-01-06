@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
-import { StorageService } from '../services/storage.service'
+import { StorageService } from '@/services/storage.service'
 
 Vue.use(VueRouter);
 

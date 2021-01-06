@@ -8,7 +8,6 @@ import moment from 'moment';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import VueClipboard from 'vue-clipboard2';
-import VueAnalytics from 'vue-analytics';
 import router from './routes/router';
 import './registerServiceWorker';
 
@@ -17,16 +16,6 @@ const isProd = process.env.NODE_ENV === 'production';
 // plugin setup
 Vue.use(DashboardPlugin);
 Vue.use(VueClipboard);
-
-//Analytics
-Vue.use(VueAnalytics, {
-  id: process.env.VUE_APP_GOOGLE_ANALYTICS_ID,
-  router,
-  debug: {
-    enabled: !isProd,
-    sendHitTask: isProd
-  }
-});
 
 ApiService.init(process.env.VUE_APP_ROOT_API);
 

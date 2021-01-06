@@ -24,23 +24,6 @@
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary border-0 mb-0">
-            <div class="card-header bg-transparent pb-5">
-              <div class="text-muted text-center mt-2 mb-4">
-                <small>Sign in with</small>
-              </div>
-              <div class="text-center">
-                <a @click="facebookLogin()" class="btn btn-neutral btn-icon mb-3">
-                  <span class="btn-inner--icon"><img src="img/icons/common/facebook.svg"></span>
-                  <span class="btn-inner--text">Facebook</span>
-                </a>
-                
-                <a @click="googleLogin()" class="btn btn-neutral btn-icon mb-3">
-                  <span class="btn-inner--icon"><img src="img/icons/common/google.svg"></span>
-                  <span class="btn-inner--text">Google</span>
-                </a>
-              </div>
-            </div>
-            
             <div class="card-body px-lg-5 py-lg-5">
               <div class="text-center text-muted mb-4">
                 <small>Sign in with credentials</small>
@@ -54,7 +37,7 @@
                             v-model="model.email"
                 >
                 </base-input>
-                
+
                 <base-input label="Password"
                             name="Password"
                             placeholder="Password"
@@ -64,9 +47,9 @@
                             v-model="model.password"
                 >
                 </base-input>
-                
+
                 <!-- <base-checkbox v-model="model.rememberMe">Remember me</base-checkbox>-->
-                
+
                 <div class="text-center">
                   <base-button type="primary" class="my-4" @click="handleSubmit">Sign in</base-button>
                   <p>

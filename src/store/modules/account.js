@@ -1,17 +1,7 @@
-import AccountService from '../../services/account.service';
+import UserService from '../../services/user.service';
 
 const state =  {
-    user: {
-        challenge_status: {
-            five_products: false,
-            cover_image: false,
-            logo_image: false,
-            share_studio: false
-        },
-        studio: {
-            shopify_url: null
-        }
-    }
+    user: { }
 };
 
 const getters = {
@@ -22,8 +12,8 @@ const getters = {
 
 const actions = {
     getUser({ commit, state }) {
-        AccountService.info().then(response => {
-            commit('setUser', response.data.user);
+        UserService.get().then(response => {
+            commit('setUser', response.user);
         });
     },
 

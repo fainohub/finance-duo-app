@@ -1,5 +1,5 @@
-import { UserService, AuthenticationError } from '../../services/user.service'
-import { StorageService } from '../../services/storage.service'
+import { AuthService, AuthenticationError } from '@/services/auth.service'
+import { StorageService } from '@/services/storage.service'
 import router from '../../routes/router'
 
 const state =  {
@@ -11,7 +11,7 @@ const state =  {
 
 const getters = {
     loggedIn: (state, getters, rootState) => {
-        return state.accessToken ? true : false;
+        return !!state.accessToken;
     },
 
     authenticationErrorCode: (state, getters, rootState) => {
@@ -32,7 +32,7 @@ const actions = {
         commit('loginRequest');
 
         try {
-            const token = await UserService.login(email, password);
+            const token = await AuthService.login(email, password);
 
             if (token === null) {
               throw new AuthenticationError(403,`Your account has been suspended. <a href="mailto:contact@artishup.com">Contact us</a> for more information.`)
@@ -56,7 +56,7 @@ const actions = {
         commit('loginRequest');
 
         try {
-            const token = await UserService.socialLogin(firebase_auth_id, firebase_auth_provider);
+            const token = await AuthService.socialLogin(firebase_auth_id, firebase_auth_provider);
 
             if (token === null) {
                 throw new AuthenticationError(403,`Your account has been suspended. <a href="mailto:contact@artishup.com">Contact us</a> for more information.`)
@@ -64,7 +64,7 @@ const actions = {
 
             commit('loginSuccess', token);
 
-            router.push(router.history.current.query.redirect || '/dashboard?welcome=true');
+            router.push(router.history.current.query.redirect || '/dashboard');
 
             return true;
         } catch (e) {
@@ -80,11 +80,11 @@ const actions = {
         commit('loginRequest');
 
         try {
-            UserService.loginUser(token);
+            AuthService.loginUser(token);
 
             commit('loginSuccess', token);
 
-            router.push(router.history.current.query.redirect || '/dashboard?welcome=true');
+            router.push(router.history.current.query.redirect || '/dashboard');
 
             return true;
         } catch (e) {
@@ -97,7 +97,7 @@ const actions = {
     },
 
     logout({ commit }) {
-        UserService.logout();
+        AuthService.logout();
         commit('logoutSuccess');
         router.push('/');
     }

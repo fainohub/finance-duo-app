@@ -6,15 +6,7 @@
 
         <sidebar-item :link="{ name: 'Dashboard', icon: 'fas fa-columns text-dark', path: '/dashboard' }"></sidebar-item>
 
-        <sidebar-item :link="{ name: 'Artworks', icon: 'ni ni-image text-warning', path: '/artworks' }"></sidebar-item>
-
-        <sidebar-item :link="{ name: 'Sales', icon: 'ni ni-cart text-success', path: '/sales' }"></sidebar-item>
-
-        <sidebar-item :link="{ name: 'Balance', icon: 'ni ni-money-coins text-info', path: '/balance' }"></sidebar-item>
-
-        <sidebar-item :link="{ name: 'My Studio Store', icon: 'fas fa-store text-blue', path: '/account' }"></sidebar-item>
-
-        <sidebar-item :link="{ name: 'What is New', icon: 'ni ni-app text-danger', path: '/news' }"></sidebar-item>
+        <sidebar-item :link="{ name: 'Despesas', icon: 'fas fa-columns text-dark', path: '/expenses' }"></sidebar-item>
 
       </template>
 
@@ -22,43 +14,12 @@
         <hr class="my-3">
         <h6 class="navbar-heading p-0 text-muted">Tools and Tips</h6>
 
-        <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-            <a class="nav-link" href="https://artishup.com/blogs/posts/important-information"
-               target="_blank">
-              <i class="ni ni-bell-55"></i>
-              <span class="nav-link-text">Important Informations</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-               href="https://artishup.com/blogs/posts/tips-for-success"
-               target="_blank">
-              <i class="ni ni-spaceship"></i>
-              <span class="nav-link-text">Tips for Success</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-               href="https://artishup.com/blogs/posts/graphic-trends-and-design-inspiration"
-               target="_blank">
-              <i class="ni ni-chart-bar-32"></i>
-              <span class="nav-link-text">Graphic Trends</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"
-               href="https://artishup.com/blogs/posts/legal-tips"
-               target="_blank">
-              <i class="ni ni-paper-diploma"></i>
-              <span class="nav-link-text">Legal Tips</span>
-            </a>
-          </li>
-        </ul>
       </template>
 
     </side-bar>
+
     <div class="main-content bg-secondary">
+
       <dashboard-navbar></dashboard-navbar>
 
       <div @click="$sidebar.displaySidebar(false)">
