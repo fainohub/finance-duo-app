@@ -6,7 +6,7 @@
           <h6 class="h1 text-default d-inline-block mb-0">Despesas</h6>
         </div>
         <div class="col-lg-6 col-5 text-right" v-if="!emptyState && expenseLoaded">
-          <router-link to="/artworks/create">
+          <router-link to="/expenses/create">
             <base-button size="md" type="neutral">Adicionar Despesa</base-button>
           </router-link>
         </div>
@@ -15,15 +15,11 @@
 
     <div class="container-fluid mt--6">
       <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col-lg-10">
 
-          <ExpenseEmptyState
-            v-if="!emptyState"
-          ></ExpenseEmptyState>
+          <ExpenseEmptyState v-if="emptyState"></ExpenseEmptyState>
 
-          <ExpenseTable
-              v-on:show-empty-state="showEmptyState"
-          ></ExpenseTable>
+          <ExpenseTable v-on:show-empty-state="showEmptyState"></ExpenseTable>
 
         </div>
       </div>
