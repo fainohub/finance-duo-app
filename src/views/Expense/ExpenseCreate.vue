@@ -130,7 +130,8 @@
       return {
         loading: false,
         expense: {
-          user_account_id: '1872ab79-6506-44e4-8d6b-38bc51afa858',
+          id: this.$uuid.v4(),
+          group_id: 'e8007b10-07be-4116-8a98-5f3190f3e443',
           category_id: null,
           description: null,
           amount: 0,

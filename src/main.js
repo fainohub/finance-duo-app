@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import VueUUID from 'vue-uuid';
 import DashboardPlugin from './plugins/dashboard-plugin';
 import App from './App.vue';
 import store from './store';
@@ -12,6 +13,8 @@ import router from './routes/router';
 import './registerServiceWorker';
 
 const isProd = process.env.NODE_ENV === 'production';
+
+Vue.use(VueUUID);
 
 // plugin setup
 Vue.use(DashboardPlugin);

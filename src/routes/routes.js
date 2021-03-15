@@ -1,6 +1,24 @@
 import DashboardLayout from '@/views/Layout/DashboardLayout.vue';
 import NotFound from '@/views/Home/NotFoundPage.vue';
 import LoginLayout from "@/views/Layout/LoginLayout";
+import AuthLayout from "@/views/Layout/AuthLayout";
+
+let homePage = {
+  path: '/',
+  component: AuthLayout,
+  name: 'Home',
+  children: [
+    {
+      path: 'home',
+      name: 'Home',
+      component: () => import(/* webpackChunkName: "home" */ '@/views/Home/Home.vue'),
+      meta: {
+        public: true,
+        onlyWhenLoggedOut: true
+      }
+    },
+  ]
+};
 
 let authPages = {
   path: '/',
@@ -10,7 +28,7 @@ let authPages = {
     {
       path: 'login',
       name: 'Login',
-      component: () => import(/* webpackChunkName: "pages" */ '@/views/Auth/Login.vue'),
+      component: () => import(/* webpackChunkName: "login" */ '@/views/Auth/Login.vue'),
       meta: {
         public: true,
         onlyWhenLoggedOut: true
@@ -19,7 +37,7 @@ let authPages = {
     {
       path: 'register',
       name: 'Register',
-      component: () => import(/* webpackChunkName: "pages" */ '@/views/Auth/Register.vue'),
+      component: () => import(/* webpackChunkName: "register" */ '@/views/Auth/Register.vue'),
       meta: {
         public: true,
         onlyWhenLoggedOut: true
@@ -52,7 +70,7 @@ let dashboardPages = {
 };
 
 const routes = [
-  //homePage,
+  homePage,
   authPages,
   dashboardPages,
   { path: '*', component: NotFound }
