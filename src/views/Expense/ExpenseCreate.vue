@@ -23,6 +23,26 @@
                 <div class="col-md-8">
 
                   <base-input
+                    label="Grupo"
+                    name="group"
+                    tooltip=""
+                  >
+                    <template>
+                      <el-select class="select-default"
+                                 placeholder="Grupo"
+                                 v-model="expense.group_id"
+                      >
+                        <el-option v-for="option in user_groups"
+                                   class="select-danger"
+                                   :value="option.value"
+                                   :label="option.label"
+                                   :key="option.label">
+                        </el-option>
+                      </el-select>
+                    </template>
+                  </base-input>
+
+                  <base-input
                     label="Categoria"
                     name="category"
                     tooltip=""
@@ -114,6 +134,7 @@
 
   /* Services */
   import ExpenseService from '../../services/expense.service';
+  import UserService from '../../services/user.service';
   import router from '../../routes/router';
   import moment from "moment";
 
@@ -131,18 +152,21 @@
         loading: false,
         expense: {
           id: this.$uuid.v4(),
-          group_id: 'e8007b10-07be-4116-8a98-5f3190f3e443',
+          group_id: null,
           category_id: null,
           description: null,
           amount: 0,
           paid_at: moment().format('Y-MM-DD'),
         },
-        expense_categories: []
+        expense_categories: [],
+        user_groups: [],
       }
     },
 
     mounted: function() {
       this.getCategories();
+
+      this.getGroups();
     },
 
     methods: {
@@ -156,6 +180,21 @@
               }
             );
           });
+        });
+      },
+
+      getGroups: function () {
+        UserService.groups().then(response => {
+          response.groups.forEach((data) => {
+            this.user_groups.push(
+              {
+                value: data.id,
+                label: data.name
+              }
+            );
+          });
+
+          this.expense.group_id = this.user_groups[0].value;
         });
       },
 
