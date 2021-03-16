@@ -4,17 +4,17 @@
     <side-bar>
       <template slot="links" slot-scope="props">
 
-        <sidebar-item :link="{ name: 'Dashboard', icon: 'fas fa-columns text-dark', path: '/dashboard' }"></sidebar-item>
+        <sidebar-item :link="{ name: 'Home', icon: 'fas fa-columns text-dark', path: '/' }"></sidebar-item>
 
         <sidebar-item :link="{ name: 'Despesas', icon: 'fas fa-columns text-dark', path: '/expenses' }"></sidebar-item>
 
       </template>
 
-      <template slot="links-after">
-        <hr class="my-3">
-        <h6 class="navbar-heading p-0 text-muted">Tools and Tips</h6>
+<!--      <template slot="links-after">-->
+<!--        <hr class="my-3">-->
+<!--        <h6 class="navbar-heading p-0 text-muted">Tools and Tips</h6>-->
 
-      </template>
+<!--      </template>-->
 
     </side-bar>
 

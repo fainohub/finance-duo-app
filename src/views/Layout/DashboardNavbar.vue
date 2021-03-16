@@ -22,16 +22,16 @@
       </li>
 
       <!-- Notifications -->
-      <el-dropdown trigger="click" class="dropdown ml-3" placement="bottom">
-        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="ni ni-bell-55"></i>
-        </a>
-        <el-dropdown-menu class="dropdown-menu dropdown-menu-xl dropdown-menu-arrow show" slot="dropdown">
-          <div class="px-3 py-3">
-            <h6 class="text-sm text-muted m-0">You have <strong class="text-primary">0</strong> notifications.</h6>
-          </div>
-        </el-dropdown-menu>
-      </el-dropdown>
+<!--      <el-dropdown trigger="click" class="dropdown ml-3" placement="bottom">-->
+<!--        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--          <i class="ni ni-bell-55"></i>-->
+<!--        </a>-->
+<!--        <el-dropdown-menu class="dropdown-menu dropdown-menu-xl dropdown-menu-arrow show" slot="dropdown">-->
+<!--          <div class="px-3 py-3">-->
+<!--            <h6 class="text-sm text-muted m-0">You have <strong class="text-primary">0</strong> notifications.</h6>-->
+<!--          </div>-->
+<!--        </el-dropdown-menu>-->
+<!--      </el-dropdown>-->
     </ul>
 
     <ul class="navbar-nav align-items-center ml-auto ml-md-0">
@@ -49,13 +49,9 @@
         </a>
         <el-dropdown-menu class="dropdown-menu dropdown-menu-arrow show" slot="dropdown">
           <div>
-            <div class="dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
-            </div>
-
             <router-link to="/account" class="dropdown-item">
               <i class="ni ni-single-02"></i>
-              <span>My profile</span>
+              <span>Meu Perfil</span>
             </router-link>
 
             <div class="dropdown-divider"></div>

@@ -1,24 +1,6 @@
 import DashboardLayout from '@/views/Layout/DashboardLayout.vue';
 import NotFound from '@/views/Home/NotFoundPage.vue';
 import LoginLayout from "@/views/Layout/LoginLayout";
-import AuthLayout from "@/views/Layout/AuthLayout";
-
-let homePage = {
-  path: '/',
-  component: AuthLayout,
-  name: 'Home',
-  children: [
-    {
-      path: 'home',
-      name: 'Home',
-      component: () => import(/* webpackChunkName: "home" */ '@/views/Home/Home.vue'),
-      meta: {
-        public: true,
-        onlyWhenLoggedOut: true
-      }
-    },
-  ]
-};
 
 let authPages = {
   path: '/',
@@ -46,23 +28,29 @@ let authPages = {
   ]
 };
 
-let dashboardPages = {
+let dashboardHome = {
   path: '/',
   component: DashboardLayout,
-  redirect: 'dashboard',
-  name: 'Dashboard',
   children: [
     {
-      path: 'dashboard',
+      path: '',
+      name: 'Dashboard',
       component: () => import(/* webpackChunkName: "dashboard" */ '@/views/Dashboard/Dashboard.vue')
-    },
+    }
+  ]
+};
+
+let expensePages = {
+  path: '/expenses',
+  component: DashboardLayout,
+  children: [
     {
-      path: 'expenses',
+      path: '',
       name: 'Expenses',
       component: () => import(/* webpackChunkName: "expenses" */ '@/views/Expense/ExpenseIndex.vue')
     },
     {
-      path: 'expenses/create',
+      path: 'create',
       name: 'Create Expense',
       component: () => import(/* webpackChunkName: "expense-create" */ '@/views/Expense/ExpenseCreate.vue')
     }
@@ -70,9 +58,9 @@ let dashboardPages = {
 };
 
 const routes = [
-  homePage,
+  dashboardHome,
   authPages,
-  dashboardPages,
+  expensePages,
   { path: '*', component: NotFound }
 ];
 
